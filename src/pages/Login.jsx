@@ -1,22 +1,36 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const initialValue = {
     email: '',
     password: ''
 }
 const Login = () => {
-    const [error,setError] = useState();
+    const {login} = useContext(AuthContext)
+   
+    const [loginError, setLoginError] = useState();
 
     //formik
     const { values, handleChange, handleBlur, handleSubmit } = useFormik({
         initialValues: initialValue,
-        onSubmit: (values) => {
+        onSubmit: (values,action) => {
             const email = values.email;
             const password = values.password;
             console.log(email, password);
+            //
+            setLoginError('')
+
+            login(email,password)
+            .then(result=>{
+                console.log('successfully login',result.user);
+            })
+            .catch(error=>{
+                setLoginError(error.message)
+            })
+            action.resetForm();
         }
     })
 
@@ -45,7 +59,7 @@ const Login = () => {
 
                     <input className='mt-4 bg-[#F9A51A] w-full  rounded-lg py-2 mb-3 cursor-pointer' type="submit" value="Login" />
                     {
-                        error && <p className='text-red-700'>{error}</p>
+                        loginError && <p className='text-red-700 mt-3 text-center'>{loginError}</p>
                     }
                     <br />
                     <p className='text-center mb-3'><small>Don't have an account ?<Link className='text-[#F9A51A]' to='/loginLayout/register'> Register</Link></small></p>

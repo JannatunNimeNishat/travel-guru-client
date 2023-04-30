@@ -5,12 +5,18 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_APIKEY,
-    authDomain: import.meta.env.VITE_AUTHDOMAIN,
-    projectId: import.meta.env.VITE_PROJECTID,
-    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-    appId: import.meta.env.VITE_APPID
+    /*  apiKey: import.meta.env.VITE_APIKEY,
+     authDomain: import.meta.env.VITE_AUTHDOMAIN,
+     projectId: import.meta.env.VITE_PROJECTID,
+     storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+     messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+     appId: import.meta.env.VITE_APPID */
+    apiKey: "AIzaSyA_p_qrFs59LLJIEXjvVnHRk-S29Dbdn14",
+    authDomain: "travel-guru-7d291.firebaseapp.com",
+    projectId: "travel-guru-7d291",
+    storageBucket: "travel-guru-7d291.appspot.com",
+    messagingSenderId: "955878001288",
+    appId: "1:955878001288:web:b750ed5853aedf96e36d3d"
 };
 
 // Initialize Firebase

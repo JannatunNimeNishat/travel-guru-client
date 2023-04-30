@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaFacebook, FaGoogle } from "react-icons/fa"; 
 import { useFormik } from 'formik';
 import registerSchema from '../schema/YupValidation';
+import { AuthContext } from '../provider/AuthProvider';
 
 
 const initialValue = {
@@ -14,6 +15,12 @@ const initialValue = {
 }
 
 const Registration = () => {
+
+    const {registerUser} = useContext(AuthContext);
+
+    const [registerError, setRegisterError]= useState();
+
+    //formik
     const {values,errors,handleBlur,handleChange,handleSubmit,touched} = useFormik({
         initialValues:initialValue,
         validationSchema: registerSchema,
@@ -24,6 +31,19 @@ const Registration = () => {
             const password = values.password;
             const confirm_password = values.confirm_password;
             console.log(first_name,last_name,email,password,confirm_password);
+
+            setRegisterError('')
+
+            //create a user in firebase
+            registerUser(email,password)
+            .then(result =>{
+                console.log('login successful',result.user);
+            })
+            .catch(error=>{
+                console.log('error: ',error.message);
+                setRegisterError(error.message)
+            })
+
             action.resetForm();
         }
     })
@@ -109,6 +129,9 @@ const Registration = () => {
                     <br />
                    
                     <input className='mt-4 bg-[#F9A51A] w-full  rounded-lg py-2 mb-3 cursor-pointer' type="submit" value="Create an account" />
+                    {
+                        registerError && <p className='text-red-700 mt-3 text-center'>{registerError}</p>
+                    }
                     <br />
                     <p className='text-center mb-3'><small>Already have an account ? <Link className='text-[#F9A51A]' to='/loginLayout/login'>Login</Link></small></p>
                 </form>
