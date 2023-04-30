@@ -38,13 +38,17 @@ const Home = () => {
                             clickable: true,
                         }}
                         modules={[Pagination]}
+                        navigation={{
+                            nextEl:'.swiper-button-next',
+                            prevEl: ".swiper-button-prev",
+                        }}
 
                     >
                         {
                             destinations.map(singleDestination => (
                                 <SwiperSlide key={singleDestination.id}>
                                     <div className=''>
-                                        <Link to={`http://localhost:5000/destination/${singleDestination.id}`}>
+                                        <Link to={`destination/${singleDestination.id}`}>
                                             <img
                                                 className='w-[270px] h-[416px] 
                                         rounded-lg bg-cover bg-center
