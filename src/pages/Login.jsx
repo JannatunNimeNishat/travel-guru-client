@@ -1,19 +1,52 @@
-import React from 'react';
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
+const initialValue = {
+    email: '',
+    password: ''
+}
 const Login = () => {
+    const [error,setError] = useState();
+
+    //formik
+    const { values, handleChange, handleBlur, handleSubmit } = useFormik({
+        initialValues: initialValue,
+        onSubmit: (values) => {
+            const email = values.email;
+            const password = values.password;
+            console.log(email, password);
+        }
+    })
+
+
     return (
         <div className='mt-5 h-[88vh]  flex justify-center'>
             <div className=' '>
-                <form className='border w-[570px] px-8 rounded'>
+                <form onSubmit={handleSubmit} className='border w-[570px] px-8 rounded'>
                     <h3 className='text-2xl font-semibold mt-5'>Login</h3>
-                    <input className='border-b-2  mt-5  w-full' type="email" name="first_name" placeholder='Username or Email' />
+                    <input className='border-b-2  mt-5  w-full'
+                        type="email"
+                        name="email"
+                        placeholder='Username or Email'
+                        value={values.email}
+                        onChange={handleChange}
+                    />
                     <br />
-                    <input className='border-b-2  mt-5  w-full' type="password" name="password" placeholder='Password' />
+                    <input className='border-b-2  mt-5  w-full'
+                        type="password"
+                        name="password"
+                        placeholder='Password'
+                        value={values.password}
+                        onChange={handleChange}
+                    />
                     <br />
 
                     <input className='mt-4 bg-[#F9A51A] w-full  rounded-lg py-2 mb-3 cursor-pointer' type="submit" value="Login" />
+                    {
+                        error && <p className='text-red-700'>{error}</p>
+                    }
                     <br />
                     <p className='text-center mb-3'><small>Don't have an account ?<Link className='text-[#F9A51A]' to='/loginLayout/register'> Register</Link></small></p>
                 </form>
