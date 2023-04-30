@@ -4,7 +4,7 @@ import serachIcon from '../../assets/images/icons/search_icon.png'
 import { Link } from 'react-router-dom';
 const NavBar = () => {
     return (
-        <nav className='my-container bg-slate-600 flex items-center justify-between px-3'>
+        <nav className='my-container  pt-3 flex items-center justify-between px-3'>
             <img src={logo} alt="" />
             <input className='w-[370px] h-[44px] rounded-lg pl-3'
             value={`Search your Destination...`} 
