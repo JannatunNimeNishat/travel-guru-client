@@ -3,6 +3,9 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home";
 import Booking from "../pages/Booking";
 import Bookings from "../pages/Bookings";
+import LoginLayout from "../layouts/LoginLayout";
+import Login from "../pages/Login";
+import Registration from "../pages/Registration";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +27,20 @@ const router = createBrowserRouter([
                 element:<Bookings></Bookings>
             }
         ]
+    },
+    {
+       path:'loginLayout',
+       element:<LoginLayout></LoginLayout>,
+       children:[
+        {
+            path:'login',
+            element:<Login></Login>
+        },
+        {
+            path:'register',
+            element:<Registration></Registration>
+        }
+       ]
     }
 ])
 
