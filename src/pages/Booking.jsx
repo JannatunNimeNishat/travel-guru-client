@@ -67,7 +67,7 @@ const Booking = () => {
                         <DatePicker className='border bg-slate-200 w-5/6 pl-2 py-2 rounded-lg' name='eDate' selected={endDate} onChange={date => setEndDate(date)}></DatePicker>
                     </div>
                 </div> 
-                <Link to='/bookings'>
+                <Link to='/loginLayout/bookings'>
                 <input className='w-full py-2 rounded-lg mt-5  bg-[#F9A51A] font-semibold cursor-pointer' type="submit" value="Start booking" />
                 </Link>
             </form>
